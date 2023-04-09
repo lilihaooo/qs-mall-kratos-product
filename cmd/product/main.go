@@ -2,9 +2,10 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
-
 	"product/internal/conf"
+	"product/internal/pkg/registry"
 
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/config"
@@ -76,6 +77,12 @@ func main() {
 		panic(err)
 	}
 	defer cleanup()
+
+	// 向Etcd中注册服务
+	err = registry.InitEtcdService(&bc)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	// start and wait for stop signal
 	if err := app.Run(); err != nil {

@@ -1,7 +1,4 @@
 server:
-  http:
-    addr: 0.0.0.0:8000
-    timeout: 1s
   grpc:
     addr: 127.0.0.1:9000
     timeout: 10s
@@ -13,3 +10,6 @@ data:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s
     write_timeout: 0.2s
+etcd:
+  url: 127.0.0.1:2379
+  timeout: 1s
